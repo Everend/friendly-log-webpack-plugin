@@ -99,13 +99,13 @@ module.exports = (assets, assetsDir, countControl) => {
       })
     }
   })
-  // 排序，优先级js>css>img>font>ico>html，大文件优先于小文件。
+  // 排序，优先级font>img>js>css>ico>html，大文件优先于小文件。
   assetsX.sort((a, b) => {
     const tests = [
+      val => isFontWithSum(val),
       val => isImgWithSum(val),
       val => isJSWithSum(val),
       val => isCSSWithSum(val),
-      val => isFontWithSum(val),
       isIco,
       isHTML,
     ]
