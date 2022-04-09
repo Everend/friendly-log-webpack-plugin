@@ -18,21 +18,21 @@ class FriendlyLogPlugin {
     compiler.hooks.done.tap('FriendlyLogPlugin', stats => {
       // 检查编译期是否有错误，存在就返回，否则会影响到编译错误的显示。
       if (stats.hasErrors()) return
-      const { assets, startTime, endTime, modules } = stats.compilation
 
+      const abbr = 'FLP',
+        { assets, startTime, endTime, modules } = stats.compilation
       if (process.env.NODE_ENV !== 'production') {
         // 开发环境
-        // 获取开发服务器请求信息，值为 D:\xxx\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=8080&pathname=%2Fws&logging=info&reconnect=10。
+        // 获取开发服务器请求信息(后续可能会优化)，值为 D:\xxx\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=8080&pathname=%2Fws&logging=info&reconnect=10。
         const request = [...modules].find(i =>
-          i.context?.includes('\\node_modules\\webpack-dev-server\\client'),
-        ).request
-        const searchParams = new URL(request).searchParams
-        const protocol = compiler.options.devServer?.https ? 'https' : 'http'
-        const host = searchParams.get('hostname')
-        const port = searchParams.get('port')
-        const urls = prepareUrls(protocol, host, port)
+            i.context?.includes('\\node_modules\\webpack-dev-server\\client'),
+          ).request,
+          searchParams = new URL(request).searchParams,
+          protocol = compiler.options.devServer?.https ? 'https' : 'http',
+          host = searchParams.get('hostname'),
+          port = searchParams.get('port'),
+          urls = prepareUrls(protocol, host, port)
 
-        const abbr = 'FLP'
         console.log()
         log(`Project is running at ${fancyTime(new Date(endTime))}`, abbr)
         log(`Local:   ${fancyUrl(urls.localUrl)}`, abbr)
@@ -47,8 +47,12 @@ class FriendlyLogPlugin {
         }
       } else {
         // 生产环境
-        const path = compiler.options.output.path
-        console.log(fancyAssets(assets, path, this.options.countControl))
+        console.log()
+        console.log(fancyAssets(assets, compiler.options.output.path, this.options.countControl))
+        console.log()
+        log(`Build completed at ${fancyTime(new Date(endTime))}`, abbr)
+        log(`Compiled successfully in ${fancyInterval(endTime - startTime)}`, abbr)
+        console.log()
       }
     })
   }

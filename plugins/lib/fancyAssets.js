@@ -116,10 +116,10 @@ module.exports = (assets, assetsDir, countControl) => {
 
   ui.div(
     ...makeRow(
-      chalk.bold('Dirctory'),
-      chalk.bold('Asset'),
-      chalk.bold('Size'),
-      chalk.bold('Gzipped'),
+      chalk.bold.cyan('Dirctory'),
+      chalk.bold.cyan('File'),
+      chalk.bold.cyan('Size'),
+      chalk.bold.cyan('Gzipped'),
     ),
   )
   assetsX.forEach(asset => {
@@ -145,5 +145,5 @@ module.exports = (assets, assetsDir, countControl) => {
     )
   })
 
-  return `\n` + ui.toString() + `\n`
+  return ui.toString()
 }

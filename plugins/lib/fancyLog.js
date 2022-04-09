@@ -20,9 +20,9 @@ module.exports = {
   fancyInterval: val => {
     let interval
     if (val >= 1000) {
-      interval = `${round(val / 1000, 2)} s`
+      interval = `${round(val / 1000, 2)}s`
     } else {
-      interval = `${val} ms`
+      interval = `${val}ms`
     }
     return chalk.blueBright(interval)
   },
