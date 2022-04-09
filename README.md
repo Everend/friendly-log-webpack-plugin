@@ -1,0 +1,1 @@
+# Friendly Log Webpack Plugin

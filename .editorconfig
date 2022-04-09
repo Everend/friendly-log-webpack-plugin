@@ -1,0 +1,21 @@
+# 配置参考：https://editorconfig.org
+
+# 表明这是根目录，插件无需从当前目录向上搜索。
+root = true
+
+# 匹配所有文件
+[*]
+# 字符编码
+charset = utf-8
+# 缩进风格，可选'space'|'tab'。
+indent_style = space
+# 缩进空格数
+indent_size = 2
+# 换行符，可选'lf'|'cr'|'crlf'(on save)。
+end_of_line = crlf
+# 删除行末空白符(on save)
+trim_trailing_whitespace = true
+# 文件末尾插入新行(on save)
+insert_final_newline = true
+# 每行最大长度
+max_line_length = 100

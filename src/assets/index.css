@@ -1,0 +1,19 @@
+html {
+  height: 100%;
+}
+body {
+  background: url('rocket.png') no-repeat center;
+}
+#app {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  font-family: pixel;
+  font-size: 28px;
+  transform: translate(-50%, -50%);
+}
+@font-face {
+  font-family: pixel;
+  src: url('FZXIANGSU12.ttf');
+  font-display: block;
+}

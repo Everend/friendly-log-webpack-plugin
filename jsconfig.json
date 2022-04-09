@@ -1,0 +1,15 @@
+// https://www.typescriptlang.org/zh/tsconfig
+
+{
+  "compilerOptions": {
+    // 用于解析非相对模块名称的基本目录
+    "baseUrl": "./",
+    // 指定相对于baseUrl选项计算的路径映射
+    "paths": {
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"]
+    }
+  },
+  // 排除的文件
+  "exclude": ["node_modules", "dist"]
+}
